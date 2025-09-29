@@ -9,11 +9,13 @@ export default function Register() {
    const [email, setEmail] = useState("");
    const [password, setPassword] = useState("");
 
+  const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
+
   const handleSubmit = async(e) => {
     e.preventDefault();
     console.log("Register Data:", { name, email, password });
     try{
-        const response=await fetch('http://localhost:8000/api/auth/register',{
+        const response=await fetch(`${API_BASE}/api/auth/register`,{
             method:"POST",
             headers:{
                 'Content-Type':'application/json',

@@ -11,6 +11,7 @@ export const useAuth = () => {
 };
 
 export const AuthProvider = ({ children }) => {
+  const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -42,7 +43,7 @@ export const AuthProvider = ({ children }) => {
   // Verify token with backend
   const verifyToken = async (tokenToVerify) => {
     try {
-      const response = await fetch('http://localhost:8000/api/auth/verify', {
+      const response = await fetch(`${API_BASE}/api/auth/verify`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${tokenToVerify}`,
@@ -72,7 +73,7 @@ export const AuthProvider = ({ children }) => {
     try {
       // Call logout endpoint if token exists
       if (token) {
-        await fetch('http://localhost:8000/api/auth/logout', {
+        await fetch(`${API_BASE}/api/auth/logout`, {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${token}`,

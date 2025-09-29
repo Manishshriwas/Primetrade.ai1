@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 export default function Dashboard() {
+  const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
   const { user, isAuthenticated, token } = useAuth();
   const navigate = useNavigate();
   const [notes, setNotes] = useState([]);
@@ -22,7 +23,7 @@ export default function Dashboard() {
     
     try {
       setLoading(true);
-      const response = await fetch(`http://localhost:8000/api/notes`, {
+      const response = await fetch(`${API_BASE}/api/notes`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -66,7 +67,7 @@ export default function Dashboard() {
     }
 
     try {
-      const response = await fetch('http://localhost:8000/api/notes', {
+      const response = await fetch(`${API_BASE}/api/notes`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -102,7 +103,7 @@ export default function Dashboard() {
     }
 
     try {
-      const response = await fetch(`http://localhost:8000/api/notes/${noteId}`, {
+      const response = await fetch(`${API_BASE}/api/notes/${noteId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
