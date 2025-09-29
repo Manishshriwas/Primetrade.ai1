@@ -3,10 +3,11 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-gray-100 text-center px-4">
       <h1 className="text-4xl font-bold text-gray-800 mb-4">
-        Welcome to My App 🚀
+        Welcome to My App 
       </h1>
       <p className="text-lg text-gray-600 mb-6">
-        This is the home page. Use the navigation bar to explore Signup, Login, Dashboard, and Profile.
+       Primetrade.ai is a niche AI and blockchain venture studio, where we help multiple product startups grow in cutting-edge fields of AI and blockchain.
+
       </p>
       <a
         href="/register"
