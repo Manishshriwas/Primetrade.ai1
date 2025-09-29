@@ -1,7 +1,6 @@
 
 import { useState } from "react";
 import {toast} from 'react-toastify'
-import { buildApiUrl } from '../config/api.js';
 
 export default function Register() {
 
@@ -14,7 +13,7 @@ export default function Register() {
     e.preventDefault();
     console.log("Register Data:", { name, email, password });
     try{
-        const response=await fetch(buildApiUrl('/api/auth/register'),{
+        const response=await fetch('http://localhost:8000/api/auth/register',{
             method:"POST",
             headers:{
                 'Content-Type':'application/json',
