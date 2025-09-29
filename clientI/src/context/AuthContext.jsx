@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react';
+import { buildApiUrl } from '../config/api.js';
 
 const AuthContext = createContext();
 
@@ -42,7 +43,7 @@ export const AuthProvider = ({ children }) => {
   // Verify token with backend
   const verifyToken = async (tokenToVerify) => {
     try {
-      const response = await fetch('http://localhost:8000/api/auth/verify', {
+      const response = await fetch(buildApiUrl('/api/auth/verify'), {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${tokenToVerify}`,
@@ -72,7 +73,7 @@ export const AuthProvider = ({ children }) => {
     try {
       // Call logout endpoint if token exists
       if (token) {
-        await fetch('http://localhost:8000/api/auth/logout', {
+        await fetch(buildApiUrl('/api/auth/logout'), {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${token}`,

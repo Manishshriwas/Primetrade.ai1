@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useAuth } from '../context/AuthContext.jsx';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { buildApiUrl } from '../config/api.js';
 
 export default function Dashboard() {
   const { user, isAuthenticated, token } = useAuth();
@@ -22,7 +23,7 @@ export default function Dashboard() {
     
     try {
       setLoading(true);
-      const response = await fetch(`http://localhost:8000/api/notes`, {
+      const response = await fetch(buildApiUrl('/api/notes'), {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -66,7 +67,7 @@ export default function Dashboard() {
     }
 
     try {
-      const response = await fetch('http://localhost:8000/api/notes', {
+      const response = await fetch(buildApiUrl('/api/notes'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -102,7 +103,7 @@ export default function Dashboard() {
     }
 
     try {
-      const response = await fetch(`http://localhost:8000/api/notes/${noteId}`, {
+      const response = await fetch(buildApiUrl(`/api/notes/${noteId}`), {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
